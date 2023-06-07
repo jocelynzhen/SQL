@@ -1,3 +1,4 @@
+/************************************Supplier Table************************************/
 /*CREATE TABLE*/
 CREATE TABLE Supplier (
     SupplierID nvarchar(50) PRIMARY KEY,
@@ -13,6 +14,7 @@ INSERT INTO Supplier VALUES('S04','PQR Company','Selangor')
 
 
 
+/************************************Product_P Table************************************/
 /*CREATE TABLE*/
 CREATE TABLE Product_P (
     ProductID nvarchar(50) PRIMARY KEY,
@@ -30,6 +32,7 @@ INSERT Product_P VALUES('P05', 'Mouse (wireless)', 45.50, 25)
 
 
 
+/************************************Supplies Table************************************/
 /*CREATE TABLE*/
 CREATE TABLE Supplies (
     SuppliesID nvarchar(50) PRIMARY KEY,
@@ -51,33 +54,45 @@ INSERT Supplies VALUES('006', 'S04', 'P02', '2023-03-01', 35)
 
 
 
-SELECT * FROM Supplier; 
+/************************************SELECT************************************/
 SELECT * FROM Product_P;
 SELECT * FROM Supplies;
 
+
+/* 5a) Display data from all columns from the supplier table  SELECT * FROM... */
+SELECT * FROM Supplier
+
+/* 5b) Display only product name and price from product table SELECT ... FROM ... */
 SELECT Name, Price_RM FROM Product_P;
 
-SELECT Address FROM Supplier;
+/* 6a) Display only the DISTINCT values from the "Address" column in the Supplier table  SELECT DISTINCT ... FROM ... */
 SELECT DISTINCT Address FROM Supplier;
 
+SELECT Address FROM Supplier;
+
+/* 7a) Display all records from Supplies table where SuppliedDate is a null */
 SELECT * FROM Supplies WHERE SuppliedDate IS NULL;
+
+/* 7b) Display all records from Supplies table where SuppliedDate is not null */
 SELECT * FROM Supplies WHERE SuppliedDate IS NOT NULL;
 
+/* 8a) Display all suppliers from Selangor */
 SELECT * FROM Supplier WHERE Address='Selangor';
 
-
-
-UPDATE Product_P
-SET Name = 'Monitor (14inch)'
-WHERE ProductID = 'P03';
-
-UPDATE Supplies
-SET QuantitySupplied = 45
-WHERE SuppliesID = '006';
-
-SELECT ProductID FROM Supplies WHERE SupplierID = 'S01';
-
+/* 8b) Display all products supplied by supplier with supplierID S01. */
 SELECT SupplierID, Name, Product_P.ProductID, Price_RM, QuantityInStock FROM Supplies 
 INNER JOIN Product_P 
 ON Product_P.ProductID = Supplies.ProductID
 WHERE SupplierID = 'S01';
+
+SELECT ProductID FROM Supplies WHERE SupplierID = 'S01';
+
+/* 9a) Change value in column Product.Name from ‘Monitor’ to ‘Monitor (14inch)’ */
+UPDATE Product_P
+SET Name = 'Monitor (14inch)'
+WHERE ProductID = 'P03';
+
+/* 9b) Change value in column Supplies.QuantitySupplied from ‘35’ to ‘45’ for SuppliesID=006  UPDATE ... SET<column_name> = <new_value> WHERE ... */
+UPDATE Supplies
+SET QuantitySupplied = 45
+WHERE SuppliesID = '006';

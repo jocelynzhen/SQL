@@ -1,0 +1,82 @@
+USE [IDB_DEMO]
+GO
+
+/****** Object:  Table [dbo].[Product_P]    Script Date: 1/6/2023 3:11:42 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Product_P](
+	[ProductID] [nchar](50) NOT NULL,
+	[Name] [nchar](50) NULL,
+	[Price_RM] [decimal](10, 2) NULL,
+	[QuantityInStock] [int] NULL,
+ CONSTRAINT [PK_Product_P] PRIMARY KEY CLUSTERED 
+(
+	[ProductID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+/************************************************************/
+
+/****** Object:  Table [dbo].[Supplier]    Script Date: 1/6/2023 3:12:11 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Supplier](
+	[SupplierID] [nchar](50) NOT NULL,
+	[Name] [nchar](50) NULL,
+	[Address] [nchar](50) NULL,
+ CONSTRAINT [PK_Supplier] PRIMARY KEY CLUSTERED 
+(
+	[SupplierID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+/****************************************************************/
+
+
+
+/****** Object:  Table [dbo].[Supplies]    Script Date: 1/6/2023 3:12:45 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Supplies](
+	[SuppliesID] [nchar](50) NOT NULL,
+	[SupplierID] [nchar](50) NULL,
+	[ProductID] [nchar](50) NULL,
+	[SuppliedDate] [date] NULL,
+	[QuanititySupplied] [int] NULL,
+ CONSTRAINT [PK_Supplies] PRIMARY KEY CLUSTERED 
+(
+	[SuppliesID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Supplies]  WITH CHECK ADD  CONSTRAINT [FK_Supplies_Product_P] FOREIGN KEY([ProductID])
+REFERENCES [dbo].[Product_P] ([ProductID])
+GO
+
+ALTER TABLE [dbo].[Supplies] CHECK CONSTRAINT [FK_Supplies_Product_P]
+GO
+
+ALTER TABLE [dbo].[Supplies]  WITH CHECK ADD  CONSTRAINT [FK_Supplies_Supplier] FOREIGN KEY([SupplierID])
+REFERENCES [dbo].[Supplier] ([SupplierID])
+GO
+
+ALTER TABLE [dbo].[Supplies] CHECK CONSTRAINT [FK_Supplies_Supplier]
+GO
+
+

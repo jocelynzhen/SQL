@@ -54,31 +54,34 @@ INSERT Supplies VALUES('006', 'S04', 'P02', '2023-03-01', 35)
 
 
 
-/************************************SELECT************************************/
-SELECT * FROM Product_P;
-SELECT * FROM Supplies;
-
-
+/************************************Lab 5 Questions************************************/
+/*Question 5a*/
 /* 5a) Display data from all columns from the supplier table  SELECT * FROM... */
 SELECT * FROM Supplier
 
+/*Question 5b*/
 /* 5b) Display only product name and price from product table SELECT ... FROM ... */
 SELECT Name, Price_RM FROM Product_P;
 
+/*Question 6a*/
 /* 6a) Display only the DISTINCT values from the "Address" column in the Supplier table  SELECT DISTINCT ... FROM ... */
 SELECT DISTINCT Address FROM Supplier;
 
 SELECT Address FROM Supplier;
 
+/*Question 7a*/
 /* 7a) Display all records from Supplies table where SuppliedDate is a null */
 SELECT * FROM Supplies WHERE SuppliedDate IS NULL;
 
+/*Question 7b*/
 /* 7b) Display all records from Supplies table where SuppliedDate is not null */
 SELECT * FROM Supplies WHERE SuppliedDate IS NOT NULL;
 
+/*Question 8a*/
 /* 8a) Display all suppliers from Selangor */
 SELECT * FROM Supplier WHERE Address='Selangor';
 
+/*Question 8b*/
 /* 8b) Display all products supplied by supplier with supplierID S01. */
 SELECT SupplierID, Name, Product_P.ProductID, Price_RM, QuantityInStock FROM Supplies 
 INNER JOIN Product_P 
@@ -87,12 +90,21 @@ WHERE SupplierID = 'S01';
 
 SELECT ProductID FROM Supplies WHERE SupplierID = 'S01';
 
+/*Question 9a*/
 /* 9a) Change value in column Product.Name from ‘Monitor’ to ‘Monitor (14inch)’ */
 UPDATE Product_P
 SET Name = 'Monitor (14inch)'
 WHERE ProductID = 'P03';
 
+/*Question 9b*/
 /* 9b) Change value in column Supplies.QuantitySupplied from ‘35’ to ‘45’ for SuppliesID=006  UPDATE ... SET<column_name> = <new_value> WHERE ... */
 UPDATE Supplies
 SET QuantitySupplied = 45
 WHERE SuppliesID = '006';
+
+
+
+/************************************SELECT ALL************************************/
+SELECT * FROM Supplier;
+SELECT * FROM Product_P;
+SELECT * FROM Supplies;

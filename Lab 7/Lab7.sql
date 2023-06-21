@@ -14,7 +14,9 @@ INSERT INTO Publisher VALUES('P03','Rainbow','Subang')
 INSERT INTO Publisher VALUES('P04','MacHill','Kuala Lumpur')
 
 
+
 /************************************Book Table************************************/
+/*CREATE TABLE*/
 CREATE TABLE Book (
     BookID nvarchar(50),
     Name nvarchar(50),
@@ -32,6 +34,7 @@ INSERT INTO Book VALUES('B02','Science','S.Hanson','100.00','12 Feb 2016','P01')
 INSERT INTO Book VALUES('B03','English','K.Vince','89.30','9 March 2016','P02')
 INSERT INTO Book VALUES('B04','Biology','K.Vince','150.80','24 April 2016','P03')
 INSERT INTO Book VALUES('B05','Computing','J.Denzin', NULL, NULL, NULL)
+
 
 
 /************************************Lab 7 Questions************************************/
@@ -96,6 +99,7 @@ DROP COLUMN Telephone;
 DELETE FROM Book WHERE Name = 'Biology' AND Author = 'K.Vince';
 
 
-/*SELECT ALL*/
+
+/************************************SELECT ALL************************************/
 SELECT * FROM Publisher;
 SELECT * FROM Book;
